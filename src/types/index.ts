@@ -1,3 +1,5 @@
+import { Option } from '../components/select';
+
 export type Todo = {
   id: string;
   title: string;
@@ -16,5 +18,7 @@ export type ModalState = {
 };
 
 export interface RootState {
-  modal: boolean;
+  todo: {
+    todoStatus: Option;
+  };
 }

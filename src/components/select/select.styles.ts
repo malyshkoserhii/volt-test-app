@@ -14,3 +14,8 @@ export const dialog = css`
     width: 400px !important;
   }
 `;
+
+export const selectBtn = css`
+  width: 120px;
+  justify-content: space-between !important;
+`;

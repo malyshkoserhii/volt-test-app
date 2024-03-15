@@ -1,6 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
+import * as React from 'react';
+import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store';
-import { RootState } from '../../types';
+
 import { TodoListItem } from '../todo-list-item';
 import { list } from './todo-list.styles';
 import * as actions from '../../redux/modal/modal-actions';
@@ -24,23 +25,33 @@ const DATA = [
   },
 ];
 
-export const TodoList = () => {
+type TodoListProps = {
+  onEdit: () => void;
+};
+
+export const TodoList: React.FunctionComponent<TodoListProps> = ({
+  onEdit,
+}) => {
   const dispatch: AppDispatch = useDispatch();
-
-  const isModalOpen = useSelector<RootState, boolean>(
-    (state: RootState) => state.modal.modal
-  );
-
-  console.log('isModalOpen: ', isModalOpen);
 
   const onDelete = () => {
     dispatch(actions.openModal());
   };
+
   return (
-    <ul className={list}>
-      {DATA.map((todo) => {
-        return <TodoListItem key={todo?.id} todo={todo} onDelete={onDelete} />;
-      })}
-    </ul>
+    <>
+      <ul className={list}>
+        {DATA.map((todo) => {
+          return (
+            <TodoListItem
+              key={todo?.id}
+              todo={todo}
+              onDelete={onDelete}
+              onEdit={onEdit}
+            />
+          );
+        })}
+      </ul>
+    </>
   );
 };

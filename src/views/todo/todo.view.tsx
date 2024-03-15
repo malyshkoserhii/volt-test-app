@@ -1,30 +1,33 @@
-import { useDispatch, useSelector } from 'react-redux';
+import * as React from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 
-import { Modal } from '../../components/modal';
+// import { Modal } from '../../components/modal';
+import { TodoForm } from '../../components/todo-form';
 import { TodoList } from '../../components/todo-list';
-import { RootState } from '../../types';
-import * as actions from '../../redux/modal/modal-actions';
-import { AppDispatch } from '../../redux/store';
+// import { RootState } from '../../types';
+// import * as actions from '../../redux/modal/modal-actions';
+// import { AppDispatch } from '../../redux/store';
 
 export const TodoView = () => {
-  const dispatch: AppDispatch = useDispatch();
+  const [isFormOpen, setIsFormOpen] = React.useState(false);
+  // const dispatch: AppDispatch = useDispatch();
 
-  const isModalOpen = useSelector<RootState, boolean>(
-    (state: RootState) => state.modal
-  );
+  // const isModalOpen = useSelector<RootState, boolean>(
+  //   (state: RootState) => state.modal
+  // );
 
-  console.log('isModalOpen: ', isModalOpen);
+  const onEdit = () => {
+    setIsFormOpen(true);
+  };
 
-  const onClose = () => {
-    dispatch(actions.closeModal());
+  const onCloseForm = () => {
+    setIsFormOpen(false);
   };
 
   return (
     <>
-      <TodoList />
-      <Modal isOpen={isModalOpen} onClose={onClose}>
-        <p>Hello World!</p>
-      </Modal>
+      <TodoList onEdit={onEdit} />
+      <TodoForm isFormOpen={isFormOpen} onCloseForm={onCloseForm} />
     </>
   );
 };

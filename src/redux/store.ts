@@ -10,13 +10,14 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import modalReducer from './modal/modal-reducer';
+import { todoReducer } from './todo/todo-reducer';
 
 export type AppDispatch = typeof store.dispatch;
 
 export const store = configureStore({
   reducer: {
-    modal: modalReducer,
+    // modal: modalReducer,
+    todo: todoReducer,
   },
   middleware: (getDefaultMiddleware) => {
     return process.env.NODE_ENV === 'development'

@@ -5,7 +5,7 @@ import { FONT_FAMILIES } from '../../themes/fonts';
 export const header = css`
   width: 100%;
   padding: 20px 40px;
-  background-color: ${COLORS.cyan};
+  background-color: ${COLORS.starCommandBlue};
 `;
 
 export const logo = css`

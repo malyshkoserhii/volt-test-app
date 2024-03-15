@@ -47,9 +47,19 @@ body {
   margin: 0;
   font-size: 18px;
   background-color: #f0f2f5;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  font-weight: 400;
 }
 
 ul,
 ol {
   list-style: none;
+}
+
+button:focus {
+  outline: 1px solid #00b4d8 !important;
+}
+
+p {
+  margin: 0;
 }
