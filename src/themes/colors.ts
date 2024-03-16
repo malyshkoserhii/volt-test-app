@@ -8,4 +8,5 @@ export const COLORS = Object.freeze({
   eerieBlack: '#181818',
   cultured: '#F9F8F6',
   starCommandBlue: '#0077B6',
+  antiFlashWhite: '#F4F2F2',
 });

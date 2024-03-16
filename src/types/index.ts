@@ -18,6 +18,7 @@ export type ModalState = {
 };
 
 export interface RootState {
+  modal: boolean;
   todo: {
     todoStatus: Option;
   };

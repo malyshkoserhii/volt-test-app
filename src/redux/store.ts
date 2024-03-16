@@ -11,12 +11,13 @@ import {
 } from 'redux-persist';
 
 import { todoReducer } from './todo/todo-reducer';
+import { modalReducer } from './modal/modal-reducer';
 
 export type AppDispatch = typeof store.dispatch;
 
 export const store = configureStore({
   reducer: {
-    // modal: modalReducer,
+    modal: modalReducer,
     todo: todoReducer,
   },
   middleware: (getDefaultMiddleware) => {

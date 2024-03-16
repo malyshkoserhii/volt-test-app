@@ -20,10 +20,10 @@ export const TodoListItem: React.FunctionComponent<TodoListItemProps> = ({
       <li className={item}>
         <h3 className={title}>{todo?.title}</h3>
         <div className={buttonsWrapper}>
-          <Button intent="danger" className={button} onClick={onDelete}>
+          <Button intent="warning" className={button} onClick={onDelete}>
             Delete
           </Button>
-          <Button intent="success" className={button} onClick={onEdit}>
+          <Button className={button} onClick={onEdit}>
             Edit
           </Button>
         </div>
