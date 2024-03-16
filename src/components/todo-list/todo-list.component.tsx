@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../redux/store';
 
 import { TodoListItem } from '../todo-list-item';
 import { list } from './todo-list.styles';
-import * as actions from '../../redux/modal/modal-actions';
 
 const DATA = [
   {
@@ -26,18 +23,14 @@ const DATA = [
 ];
 
 type TodoListProps = {
+  onDelete: () => void;
   onEdit: () => void;
 };
 
 export const TodoList: React.FunctionComponent<TodoListProps> = ({
+  onDelete,
   onEdit,
 }) => {
-  const dispatch: AppDispatch = useDispatch();
-
-  const onDelete = () => {
-    dispatch(actions.openModal());
-  };
-
   return (
     <>
       <ul className={list}>

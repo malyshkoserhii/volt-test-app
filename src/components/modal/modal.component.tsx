@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Dialog, DialogBody } from '@blueprintjs/core';
+
 import { dialog } from './modal.styles';
 
 export type ModalProps = {
@@ -13,7 +14,6 @@ export const Modal: React.FunctionComponent<ModalProps> = ({
   children,
   isOpen,
   onClose,
-  // actionButton = null,
 }) => {
   return (
     <Dialog usePortal isOpen={isOpen} onClose={onClose} className={dialog}>

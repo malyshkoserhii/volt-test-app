@@ -1,30 +1,39 @@
-import { useDispatch, useSelector } from 'react-redux';
+import * as React from 'react';
 
 import { TodoForm } from '../../components/todo-form';
 import { TodoList } from '../../components/todo-list';
-import { RootState } from '../../types';
-import * as actions from '../../redux/modal/modal-actions';
-import { AppDispatch } from '../../redux/store';
+import { Dialog } from '../../components/dialog';
 
 export const TodoView = () => {
-  const dispatch: AppDispatch = useDispatch();
-
-  const isModalOpen = useSelector<RootState, boolean>(
-    (state: RootState) => state.modal
-  );
+  const [isFormOpen, setIsFormOpen] = React.useState(false);
+  const [isDialogOpen, setIsDialogOpen] = React.useState(true);
 
   const onEdit = () => {
-    dispatch(actions.openModal());
+    setIsFormOpen(true);
   };
 
   const onCloseForm = () => {
-    dispatch(actions.closeModal());
+    setIsFormOpen(false);
+  };
+
+  const onDelete = () => {
+    setIsDialogOpen(true);
+  };
+
+  const onCloseDialog = () => {
+    setIsDialogOpen(false);
   };
 
   return (
     <>
-      <TodoList onEdit={onEdit} />
-      <TodoForm isFormOpen={isModalOpen} onCloseForm={onCloseForm} />
+      <TodoList onEdit={onEdit} onDelete={onDelete} />
+      <TodoForm isFormOpen={isFormOpen} onCloseForm={onCloseForm} />
+      <Dialog
+        text="Do you want to delete Todo?"
+        isOpen={isDialogOpen}
+        onClose={onCloseDialog}
+        onApprove={() => {}}
+      />
     </>
   );
 };

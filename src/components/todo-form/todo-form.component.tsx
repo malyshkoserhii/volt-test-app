@@ -1,10 +1,6 @@
 import * as React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-
 import { Button } from '@blueprintjs/core';
 import { Field, Form } from 'react-final-form';
-// import { AppDispatch } from '../../redux/store';
-// import * as actions from '../../redux/modal/modal-actions';
 
 import {
   btnWrapper,
@@ -15,8 +11,6 @@ import {
   inputWrapper,
   wrapper,
 } from './todo-form.styles';
-// import * as actions from '../../redux/modal/modal-actions';
-import { Modal } from '../modal';
 import { Input } from '../input';
 import { Textarea } from '../textarea';
 import {
@@ -24,6 +18,7 @@ import {
   maxTitleLenght,
   required,
 } from '../../validation/todo.validation';
+import { Modal } from '../modal';
 
 type TodoFormProps = {
   isFormOpen: boolean;

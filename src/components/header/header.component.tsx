@@ -1,26 +1,30 @@
-import { useDispatch, useSelector } from 'react-redux';
-
-import { actionsWrapper, header, logo } from './header.styles';
-import { AppDispatch } from '../../redux/store';
-import { RootState } from '../../types';
-import { Select } from '../select';
-import * as actions from '../../redux/modal/modal-actions';
-import { TodoForm } from '../todo-form';
+import * as React from 'react';
 import { Button } from '@blueprintjs/core';
 
-export const Header = () => {
-  const dispatch: AppDispatch = useDispatch();
+// // import { useDispatch, useSelector } from 'react-redux';
+// import { AppDispatch } from '../../redux/store';
+// import { RootState } from '../../types';
+// import * as actions from '../../redux/modal/modal-actions';
 
-  const isModalOpen = useSelector<RootState, boolean>(
-    (state: RootState) => state.modal
-  );
+import { actionsWrapper, header, logo } from './header.styles';
+import { Select } from '../select';
+import { TodoForm } from '../todo-form';
+
+export const Header = () => {
+  const [isFormOpen, setIsFormOpen] = React.useState(false);
+
+  // const dispatch: AppDispatch = useDispatch();
+
+  // const isModalOpen = useSelector<RootState, boolean>(
+  //   (state: RootState) => state.modal
+  // );
 
   const onAddTodo = () => {
-    dispatch(actions.openModal());
+    setIsFormOpen(true);
   };
 
   const onCloseForm = () => {
-    dispatch(actions.closeModal());
+    setIsFormOpen(false);
   };
 
   return (
@@ -32,7 +36,7 @@ export const Header = () => {
           <Button text="Add Todo" onClick={onAddTodo} />
         </div>
       </header>
-      <TodoForm isFormOpen={isModalOpen} onCloseForm={onCloseForm} />
+      <TodoForm isFormOpen={isFormOpen} onCloseForm={onCloseForm} />
     </>
   );
 };
