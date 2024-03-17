@@ -6,7 +6,7 @@ import { Todo } from '../../types';
 
 type TodoListItemProps = {
   todo: Todo;
-  onDelete: () => void;
+  onDelete: (todo: Todo) => void;
   onEdit: () => void;
 };
 
@@ -15,12 +15,15 @@ export const TodoListItem: React.FunctionComponent<TodoListItemProps> = ({
   onDelete,
   onEdit,
 }) => {
+  const onDeleteClick = () => {
+    onDelete(todo);
+  };
   return (
     <>
       <li className={item}>
         <h3 className={title}>{todo?.title}</h3>
         <div className={buttonsWrapper}>
-          <Button intent="warning" className={button} onClick={onDelete}>
+          <Button intent="warning" className={button} onClick={onDeleteClick}>
             Delete
           </Button>
           <Button className={button} onClick={onEdit}>

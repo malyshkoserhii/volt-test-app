@@ -11,7 +11,8 @@ export type ModalState = {
 
 export interface RootState {
   modal: boolean;
-  todo: {
+  todosData: {
+    todo: Todo;
     todos: Array<Todo>;
     todoStatus: Option;
   };

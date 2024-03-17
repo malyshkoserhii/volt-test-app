@@ -7,7 +7,7 @@ export const item = css`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 20px;
+  padding: 0px 20px;
   background-color: ${COLORS.cyan};
 
   border: 1px solid ${COLORS.dimGrey};
@@ -19,11 +19,14 @@ export const item = css`
 `;
 
 export const title = css`
+  display: block;
   font-family: ${FONT_FAMILIES.robotoMedium};
   font-size: 16px;
 
   width: 100px;
+  text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
 
   @media (min-width: 640px) {
     overflow: unset;

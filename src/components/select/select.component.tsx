@@ -52,7 +52,7 @@ export const Select: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const todoStatus = useSelector<RootState, Option>(
-    (state: RootState) => state.todo.todoStatus
+    (state: RootState) => state.todosData.todoStatus
   );
 
   const onItemClick = (item: Option) => {

@@ -13,15 +13,28 @@ import {
   fetchTodosError,
   fetchTodosRequest,
   fetchTodosSuccess,
+  setTodo,
   setTodoStatus,
 } from './todo-actions';
+import { Todo } from '../../types';
 
 const todoStatus = createReducer({ id: '1', status: 'All' }, (builder) => {
   builder.addCase(setTodoStatus, (_, { payload }) => payload);
 });
 
-const todos = createReducer([], (builder) => {
+const todos = createReducer([] as Array<Todo>, (builder) => {
   builder.addCase(fetchTodosSuccess, (_, { payload }) => payload);
+  builder.addCase(deleteTodoSuccess, (state, { payload }) =>
+    state?.filter((todo) => todo.id !== payload)
+  );
+});
+
+const todo = createReducer({}, (builder) => {
+  builder.addCase(setTodo, (_, { payload }) => payload);
+});
+
+const todosError = createReducer('', (builder) => {
+  builder.addCase(fetchTodosError, (_, { payload }) => payload);
 });
 
 const loading = createReducer(false, (builder) => {
@@ -39,16 +52,19 @@ const loading = createReducer(false, (builder) => {
   builder.addCase(deleteTodoError, () => false);
 });
 
-// [fetchContactsRequest]: () => true,
-// [fetchContactsSuccess]: () => false,
-// [fetchContactsError]: () => false,
-// [addContactRequest]: () => true,
-// [addContactSuccess]: () => false,
-// [addContactError]: () => false,
-// [deleteContactRequest]: () => true,
-// [deleteContactError]: () => false,
-// [editContactRequest]: () => true,
-// [editContactSuccess]: () => false,
-// [editContactError]: () => false,
+export const todoReducer = combineReducers({
+  todo,
+  todos,
+  todoStatus,
+  loading,
+  todosError,
+});
 
-export const todoReducer = combineReducers({ todoStatus, todos, loading });
+export const test = {
+  completed: true,
+  created_at: '2024-03-11T13:16:03.077Z',
+  description: 'Complete 8 task!',
+  id: 'd1ec20bf-9962-488b-9d02-c67e2533d54c',
+  title: 'My 8 todo',
+  updated_at: '2024-03-11T13:16:03.077Z',
+};

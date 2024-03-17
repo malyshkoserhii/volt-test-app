@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import * as todoOperations from '../../redux/todo/todo.operations';
+import * as todoActions from '../../redux/todo/todo-actions';
 import { TodoForm } from '../../components/todo-form';
 import { TodoList } from '../../components/todo-list';
 import { Dialog } from '../../components/dialog';
@@ -15,8 +16,10 @@ export const TodoView = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const todos = useSelector<RootState, Array<Todo>>(
-    (state) => state.todo.todos
+    (state) => state.todosData.todos
   );
+
+  const todo = useSelector<RootState, Todo>((state) => state.todosData.todo);
 
   React.useEffect(() => {
     dispatch(todoOperations.fetchTodos());
@@ -30,12 +33,17 @@ export const TodoView = () => {
     setIsFormOpen(false);
   };
 
-  const onDelete = () => {
+  const onDelete = (todo: Todo) => {
     setIsDialogOpen(true);
+    dispatch(todoActions.setTodo(todo));
   };
 
   const onCloseDialog = () => {
     setIsDialogOpen(false);
+  };
+
+  const onApprove = () => {
+    dispatch(todoOperations.deleteTodo(todo.id));
   };
 
   return (
@@ -46,7 +54,7 @@ export const TodoView = () => {
         text="Do you want to delete Todo?"
         isOpen={isDialogOpen}
         onClose={onCloseDialog}
-        onApprove={() => {}}
+        onApprove={onApprove}
       />
     </>
   );
