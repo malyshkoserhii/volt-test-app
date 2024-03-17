@@ -18,7 +18,7 @@ export type AppDispatch = typeof store.dispatch;
 export const store = configureStore({
   reducer: {
     modal: modalReducer,
-    todo: todoReducer,
+    todosData: todoReducer,
   },
   middleware: (getDefaultMiddleware) => {
     return process.env.NODE_ENV === 'development'

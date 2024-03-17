@@ -14,9 +14,9 @@ export const required = (value: string): string | undefined => {
   return value ? undefined : 'Required';
 };
 
-export const maxTitleLenght = (min: number) => {
+export const maxTitleLenght = (max: number) => {
   return (value: string): string | undefined => {
-    return value.length >= min
+    return value.length <= max
       ? undefined
       : 'It should contain maximum 45 symbols';
   };

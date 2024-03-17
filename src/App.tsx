@@ -6,7 +6,7 @@ import { TodoView } from './views/todo/todo.view';
 export const App = () => {
   return (
     <Layout>
-      <p>Hello Todo App!</p>
+      <p>Implement Counter</p>
       <TodoView />
     </Layout>
   );

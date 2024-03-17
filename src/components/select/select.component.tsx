@@ -9,22 +9,22 @@ import { AppDispatch } from '../../redux/store';
 import { RootState } from '../../types';
 
 export type Option = {
-  id: string;
-  status: string;
+  label: string;
+  option: string;
 };
 
 const TODO_STATUS: Array<Option> = [
   {
-    id: '1',
-    status: 'All',
+    label: 'all',
+    option: 'All',
   },
   {
-    id: '2',
-    status: 'Current',
+    label: 'current',
+    option: 'Current',
   },
   {
-    id: '3',
-    status: 'Completed',
+    label: 'completed',
+    option: 'Completed',
   },
 ];
 
@@ -39,11 +39,11 @@ const renderStatus: ItemRenderer<Option> = (
     <MenuItem
       active={modifiers.active}
       disabled={modifiers.disabled}
-      key={status.id}
+      key={status.label}
       onClick={handleClick}
       onFocus={handleFocus}
       roleStructure="none"
-      text={status.status}
+      text={status.option}
     />
   );
 };
@@ -52,7 +52,7 @@ export const Select: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const todoStatus = useSelector<RootState, Option>(
-    (state: RootState) => state.todo.todoStatus
+    (state: RootState) => state.todosData.todoStatus
   );
 
   const onItemClick = (item: Option) => {
@@ -77,7 +77,7 @@ export const Select: React.FC = () => {
       popoverProps={{ modifiers: { arrow: { enabled: false } } }}
     >
       <Button
-        text={todoStatus?.status}
+        text={todoStatus?.option}
         rightIcon="chevron-down"
         className={selectBtn}
       />
