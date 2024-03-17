@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@blueprintjs/core';
 
 import { AppDispatch } from '../../redux/store';
-import { CreateTodoPayload } from '../../types';
+import { CreateTodoPayload, RootState } from '../../types';
 import * as todoOperations from '../../redux/todo/todo.operations';
 import { actionsWrapper, header, logo } from './header.styles';
 import { Select } from '../select';
@@ -14,6 +14,10 @@ export const Header = () => {
 
   const dispatch: AppDispatch = useDispatch();
 
+  const todoStatus = useSelector<RootState, string>(
+    (state) => state.todosData?.todoStatus?.label
+  );
+
   const onAddTodo = () => {
     setIsFormOpen(true);
   };
@@ -23,7 +27,7 @@ export const Header = () => {
   };
 
   const onSubmit = (values: CreateTodoPayload) => {
-    dispatch(todoOperations.addTodo(values));
+    dispatch(todoOperations.addTodo(values, todoStatus));
     onCloseForm();
   };
 

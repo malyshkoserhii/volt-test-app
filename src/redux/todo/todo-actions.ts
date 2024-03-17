@@ -32,3 +32,9 @@ export const deleteTodoError = createAction<string>('todos/deleteTodoError');
 export const updateTodoRequest = createAction('todos/updateTodoRequest');
 export const updateTodoSuccess = createAction<Todo>('todos/updateTodoSuccess');
 export const updateTodoError = createAction('todos/editTodosError');
+
+export const countTodoRequest = createAction('todos/countTodoRequest');
+export const countTodoSuccess = createAction<Array<Todo>>(
+  'todos/countTodoSuccess'
+);
+export const countTodoError = createAction<string>('todos/countTodoError');

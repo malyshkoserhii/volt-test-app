@@ -15,33 +15,12 @@ export class TodoService {
   constructor(private httpService: HttpService) {}
 
   public async getAllTodos({
+    status,
     take,
     skip,
   }: GetAllTodosPayload): Promise<PaginatedResponse<Array<Todo>>> {
     const response = await this.httpService.get<PaginatedResponse<Array<Todo>>>(
-      `todo/all/?take=${take}&skip=${skip}`
-    );
-
-    return response;
-  }
-
-  public async getCurrentTodos({
-    take,
-    skip,
-  }: GetAllTodosPayload): Promise<PaginatedResponse<Array<Todo>>> {
-    const response = await this.httpService.get<PaginatedResponse<Array<Todo>>>(
-      `todo/all/?take=${take}&skip=${skip}`
-    );
-
-    return response;
-  }
-
-  public async getCompletedTodos({
-    take,
-    skip,
-  }: GetAllTodosPayload): Promise<PaginatedResponse<Array<Todo>>> {
-    const response = await this.httpService.get<PaginatedResponse<Array<Todo>>>(
-      `todo/all?take=${take}&skip=${skip}`
+      `todo/${status}/?take=${take}&skip=${skip}`
     );
 
     return response;

@@ -21,9 +21,13 @@ export const TodoView = () => {
 
   const todo = useSelector<RootState, Todo>((state) => state.todosData.todo);
 
+  const todoStatus = useSelector<RootState, string>(
+    (state) => state.todosData?.todoStatus?.label
+  );
+
   React.useEffect(() => {
-    dispatch(todoOperations.fetchTodos());
-  }, [dispatch]);
+    dispatch(todoOperations.fetchTodos(todoStatus));
+  }, [dispatch, todoStatus]);
 
   const onCloseForm = () => {
     setIsFormOpen(false);
@@ -44,7 +48,7 @@ export const TodoView = () => {
   };
 
   const onApprove = () => {
-    dispatch(todoOperations.deleteTodo(todo.id));
+    dispatch(todoOperations.deleteTodo(todo.id, todoStatus));
     onCloseDialog();
   };
 

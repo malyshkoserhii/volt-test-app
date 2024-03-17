@@ -197,6 +197,7 @@ export type UpdateTodoPayload = {
 } & CreateTodoPayload;
 
 export type GetAllTodosPayload = {
+  status: string;
   take: number;
   skip: number;
 };

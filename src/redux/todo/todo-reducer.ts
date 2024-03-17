@@ -15,10 +15,13 @@ import {
   fetchTodosSuccess,
   setTodo,
   setTodoStatus,
+  countTodoRequest,
+  countTodoSuccess,
+  countTodoError,
 } from './todo-actions';
 import { Todo } from '../../types';
 
-const todoStatus = createReducer({ id: '1', status: 'All' }, (builder) => {
+const todoStatus = createReducer({ label: 'all', option: 'All' }, (builder) => {
   builder.addCase(setTodoStatus, (_, { payload }) => payload);
 });
 
@@ -50,6 +53,9 @@ const loading = createReducer(false, (builder) => {
   builder.addCase(deleteTodoRequest, () => true);
   builder.addCase(deleteTodoSuccess, () => false);
   builder.addCase(deleteTodoError, () => false);
+  builder.addCase(countTodoRequest, () => true);
+  builder.addCase(countTodoSuccess, () => false);
+  builder.addCase(countTodoError, () => false);
 });
 
 export const todoReducer = combineReducers({
