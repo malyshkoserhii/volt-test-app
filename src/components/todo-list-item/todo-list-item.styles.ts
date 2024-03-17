@@ -20,8 +20,9 @@ export const item = css`
 
 export const title = css`
   display: block;
-  font-family: ${FONT_FAMILIES.robotoMedium};
+  font-family: ${FONT_FAMILIES.robotoBold};
   font-size: 16px;
+  font-weight: normal;
 
   width: 100px;
   text-overflow: ellipsis;
@@ -31,6 +32,11 @@ export const title = css`
   @media (min-width: 640px) {
     overflow: unset;
   }
+`;
+
+export const compeltedTodo = css`
+  text-decoration: line-through;
+  font-family: ${FONT_FAMILIES.roboto};
 `;
 
 export const buttonsWrapper = css`

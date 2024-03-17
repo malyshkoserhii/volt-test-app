@@ -29,6 +29,6 @@ export const deleteTodoSuccess = createAction<string>(
 );
 export const deleteTodoError = createAction<string>('todos/deleteTodoError');
 
-export const editTodoRequest = createAction('todos/editTodoRequest');
-export const editTodoSuccess = createAction('todos/editTodoSuccess');
-export const editTodoError = createAction('todos/editTodosError');
+export const updateTodoRequest = createAction('todos/updateTodoRequest');
+export const updateTodoSuccess = createAction<Todo>('todos/updateTodoSuccess');
+export const updateTodoError = createAction('todos/editTodosError');

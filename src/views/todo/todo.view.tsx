@@ -25,12 +25,13 @@ export const TodoView = () => {
     dispatch(todoOperations.fetchTodos());
   }, [dispatch]);
 
-  const onEdit = () => {
-    setIsFormOpen(true);
-  };
-
   const onCloseForm = () => {
     setIsFormOpen(false);
+  };
+
+  const onEdit = (todo: Todo) => {
+    setIsFormOpen(true);
+    dispatch(todoActions.setTodo(todo));
   };
 
   const onDelete = (todo: Todo) => {
@@ -47,12 +48,35 @@ export const TodoView = () => {
     onCloseDialog();
   };
 
-  const onSubmit = (values: CreateTodoPayload) => {};
+  const onSubmit = (values: CreateTodoPayload) => {
+    dispatch(
+      todoOperations.updateTodo({
+        id: todo?.id,
+        ...values,
+      })
+    );
+    onCloseForm();
+  };
+
+  const onTodoItem = (todo: Todo) => {
+    dispatch(
+      todoOperations.updateTodo({
+        ...todo,
+        completed: !todo?.completed,
+      })
+    );
+  };
 
   return (
     <>
-      <TodoList todos={todos} onEdit={onEdit} onDelete={onDelete} />
+      <TodoList
+        todos={todos}
+        onTodoItem={onTodoItem}
+        onEdit={onEdit}
+        onDelete={onDelete}
+      />
       <TodoForm
+        todo={todo}
         onSubmit={onSubmit}
         isFormOpen={isFormOpen}
         onCloseForm={onCloseForm}

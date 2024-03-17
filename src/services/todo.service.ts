@@ -3,8 +3,10 @@ import {
   GetAllTodosPayload,
   PaginatedResponse,
   ReponseMessage,
+  ResponseMessageWithData,
   Todo,
   TodoCount,
+  UpdateTodoPayload,
 } from '../types/http-service.type';
 import { HttpFactoryService } from './http-factory.service';
 import { HttpService } from './http.service';
@@ -60,11 +62,13 @@ export class TodoService {
     return response;
   }
 
-  public async updateTodo(payload: CreateTodoPayload): Promise<Todo> {
-    const response = await this.httpService.post<Todo, CreateTodoPayload>(
-      `todo/update`,
-      payload
-    );
+  public async updateTodo(
+    payload: UpdateTodoPayload
+  ): Promise<ResponseMessageWithData<Todo>> {
+    const response = await this.httpService.post<
+      ResponseMessageWithData<Todo>,
+      UpdateTodoPayload
+    >(`todo/update`, payload);
 
     return response;
   }

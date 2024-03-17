@@ -19,15 +19,17 @@ import {
   required,
 } from '../../validation/todo.validation';
 import { Modal } from '../modal';
-import { CreateTodoPayload } from '../../types';
+import { CreateTodoPayload, Todo } from '../../types';
 
 type TodoFormProps = {
+  todo?: Todo | undefined;
   isFormOpen: boolean;
   onCloseForm: () => void;
   onSubmit: (values: CreateTodoPayload) => void;
 };
 
 export const TodoForm: React.FunctionComponent<TodoFormProps> = ({
+  todo,
   isFormOpen,
   onCloseForm,
   onSubmit,
@@ -38,7 +40,14 @@ export const TodoForm: React.FunctionComponent<TodoFormProps> = ({
       onClose={onCloseForm}
       actionButton={<Button text="Save" />}
     >
-      <Form onSubmit={onSubmit}>
+      <Form
+        onSubmit={onSubmit}
+        initialValues={{
+          title: todo?.title ?? '',
+          description: todo?.description ?? '',
+          completed: todo?.completed ?? false,
+        }}
+      >
         {({ handleSubmit }) => (
           <div className={wrapper}>
             <form onSubmit={handleSubmit} className={form}>

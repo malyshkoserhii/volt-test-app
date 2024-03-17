@@ -6,12 +6,14 @@ import { Todo } from '../../types';
 
 type TodoListProps = {
   todos: Array<Todo>;
+  onTodoItem: (todo: Todo) => void;
   onDelete: (todo: Todo) => void;
-  onEdit: () => void;
+  onEdit: (todo: Todo) => void;
 };
 
 export const TodoList: React.FunctionComponent<TodoListProps> = ({
   todos,
+  onTodoItem,
   onDelete,
   onEdit,
 }) => {
@@ -23,6 +25,7 @@ export const TodoList: React.FunctionComponent<TodoListProps> = ({
             <TodoListItem
               key={todo?.id}
               todo={todo}
+              onTodoItem={onTodoItem}
               onDelete={onDelete}
               onEdit={onEdit}
             />

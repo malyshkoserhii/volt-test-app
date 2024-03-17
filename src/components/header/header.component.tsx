@@ -14,10 +14,6 @@ export const Header = () => {
 
   const dispatch: AppDispatch = useDispatch();
 
-  // const isModalOpen = useSelector<RootState, boolean>(
-  //   (state: RootState) => state.modal
-  // );
-
   const onAddTodo = () => {
     setIsFormOpen(true);
   };

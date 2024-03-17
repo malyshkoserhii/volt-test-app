@@ -7,9 +7,9 @@ import {
   deleteTodoError,
   deleteTodoRequest,
   deleteTodoSuccess,
-  editTodoError,
-  editTodoRequest,
-  editTodoSuccess,
+  updateTodoError,
+  updateTodoRequest,
+  updateTodoSuccess,
   fetchTodosError,
   fetchTodosRequest,
   fetchTodosSuccess,
@@ -24,8 +24,8 @@ const todoStatus = createReducer({ id: '1', status: 'All' }, (builder) => {
 
 const todos = createReducer([] as Array<Todo>, (builder) => {
   builder.addCase(fetchTodosSuccess, (_, { payload }) => payload);
-  builder.addCase(deleteTodoSuccess, (state, { payload }) =>
-    state?.filter((todo) => todo.id !== payload)
+  builder.addCase(updateTodoSuccess, (state, { payload }) =>
+    state?.map((todo) => (todo?.id === payload?.id ? payload : todo))
   );
 });
 
@@ -44,9 +44,9 @@ const loading = createReducer(false, (builder) => {
   builder.addCase(addTodoRequest, () => true);
   builder.addCase(addTodoSuccess, () => false);
   builder.addCase(addTodoError, () => false);
-  builder.addCase(editTodoRequest, () => true);
-  builder.addCase(editTodoSuccess, () => false);
-  builder.addCase(editTodoError, () => false);
+  builder.addCase(updateTodoRequest, () => true);
+  builder.addCase(updateTodoSuccess, () => false);
+  builder.addCase(updateTodoError, () => false);
   builder.addCase(deleteTodoRequest, () => true);
   builder.addCase(deleteTodoSuccess, () => false);
   builder.addCase(deleteTodoError, () => false);

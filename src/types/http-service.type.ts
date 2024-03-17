@@ -166,6 +166,11 @@ export type ReponseMessage = {
   message: string;
 };
 
+export type ResponseMessageWithData<T> = {
+  data: T;
+  message: string;
+};
+
 export type PaginatedResponse<T> = {
   data: T;
   totalPages: number;
@@ -186,6 +191,10 @@ export type CreateTodoPayload = {
   description?: string;
   completed?: boolean;
 };
+
+export type UpdateTodoPayload = {
+  id: string;
+} & CreateTodoPayload;
 
 export type GetAllTodosPayload = {
   take: number;
