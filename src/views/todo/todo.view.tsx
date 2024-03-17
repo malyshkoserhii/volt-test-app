@@ -7,13 +7,19 @@ import { TodoForm } from '../../components/todo-form';
 import { TodoList } from '../../components/todo-list';
 import { Dialog } from '../../components/dialog';
 import { AppDispatch } from '../../redux/store';
-import { CreateTodoPayload, RootState, Todo } from '../../types';
+import { CreateTodoPayload, RootState, Todo, TodoCount } from '../../types';
+import { Counter } from '../../components/counter';
+import { Empty } from '../../components/empty';
 
 export const TodoView = () => {
   const [isFormOpen, setIsFormOpen] = React.useState(false);
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
   const dispatch: AppDispatch = useDispatch();
+
+  const counter = useSelector<RootState, TodoCount>(
+    (state) => state.todosData.todoCount
+  );
 
   const todos = useSelector<RootState, Array<Todo>>(
     (state) => state.todosData.todos
@@ -27,6 +33,7 @@ export const TodoView = () => {
 
   React.useEffect(() => {
     dispatch(todoOperations.fetchTodos(todoStatus));
+    dispatch(todoOperations.fetchTodoCount());
   }, [dispatch, todoStatus]);
 
   const onCloseForm = () => {
@@ -73,12 +80,17 @@ export const TodoView = () => {
 
   return (
     <>
-      <TodoList
-        todos={todos}
-        onTodoItem={onTodoItem}
-        onEdit={onEdit}
-        onDelete={onDelete}
-      />
+      <Counter compeled={counter?.completed} current={counter?.current} />
+      {todos?.length === 0 ? (
+        <Empty status={todoStatus} />
+      ) : (
+        <TodoList
+          todos={todos}
+          onTodoItem={onTodoItem}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
+      )}
       <TodoForm
         todo={todo}
         onSubmit={onSubmit}

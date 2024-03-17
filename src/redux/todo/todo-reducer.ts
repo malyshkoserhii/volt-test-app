@@ -36,6 +36,10 @@ const todo = createReducer({}, (builder) => {
   builder.addCase(setTodo, (_, { payload }) => payload);
 });
 
+const todoCount = createReducer({ completed: 0, current: 0 }, (builder) => {
+  builder.addCase(countTodoSuccess, (_, { payload }) => payload);
+});
+
 const todosError = createReducer('', (builder) => {
   builder.addCase(fetchTodosError, (_, { payload }) => payload);
 });
@@ -61,16 +65,8 @@ const loading = createReducer(false, (builder) => {
 export const todoReducer = combineReducers({
   todo,
   todos,
+  todoCount,
   todoStatus,
-  loading,
   todosError,
+  loading,
 });
-
-export const test = {
-  completed: true,
-  created_at: '2024-03-11T13:16:03.077Z',
-  description: 'Complete 8 task!',
-  id: 'd1ec20bf-9962-488b-9d02-c67e2533d54c',
-  title: 'My 8 todo',
-  updated_at: '2024-03-11T13:16:03.077Z',
-};

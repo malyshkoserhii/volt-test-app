@@ -1,4 +1,4 @@
-import { Todo } from '.';
+import { Todo, TodoCount } from '.';
 import { Option } from '../components/select';
 
 export type ModalState = {
@@ -14,6 +14,7 @@ export interface RootState {
   todosData: {
     todo: Todo;
     todos: Array<Todo>;
+    todoCount: TodoCount;
     todoStatus: Option;
   };
 }
