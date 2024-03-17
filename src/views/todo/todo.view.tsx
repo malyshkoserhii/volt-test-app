@@ -7,7 +7,7 @@ import { TodoForm } from '../../components/todo-form';
 import { TodoList } from '../../components/todo-list';
 import { Dialog } from '../../components/dialog';
 import { AppDispatch } from '../../redux/store';
-import { RootState, Todo } from '../../types';
+import { CreateTodoPayload, RootState, Todo } from '../../types';
 
 export const TodoView = () => {
   const [isFormOpen, setIsFormOpen] = React.useState(false);
@@ -44,12 +44,19 @@ export const TodoView = () => {
 
   const onApprove = () => {
     dispatch(todoOperations.deleteTodo(todo.id));
+    onCloseDialog();
   };
+
+  const onSubmit = (values: CreateTodoPayload) => {};
 
   return (
     <>
       <TodoList todos={todos} onEdit={onEdit} onDelete={onDelete} />
-      <TodoForm isFormOpen={isFormOpen} onCloseForm={onCloseForm} />
+      <TodoForm
+        onSubmit={onSubmit}
+        isFormOpen={isFormOpen}
+        onCloseForm={onCloseForm}
+      />
       <Dialog
         text="Do you want to delete Todo?"
         isOpen={isDialogOpen}

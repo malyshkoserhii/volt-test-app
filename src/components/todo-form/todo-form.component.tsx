@@ -19,20 +19,19 @@ import {
   required,
 } from '../../validation/todo.validation';
 import { Modal } from '../modal';
+import { CreateTodoPayload } from '../../types';
 
 type TodoFormProps = {
   isFormOpen: boolean;
   onCloseForm: () => void;
+  onSubmit: (values: CreateTodoPayload) => void;
 };
 
 export const TodoForm: React.FunctionComponent<TodoFormProps> = ({
   isFormOpen,
   onCloseForm,
+  onSubmit,
 }) => {
-  const onSubmit = () => {
-    // console.log(values);
-  };
-
   return (
     <Modal
       isOpen={isFormOpen}
@@ -49,7 +48,6 @@ export const TodoForm: React.FunctionComponent<TodoFormProps> = ({
                   validate={composeValidators(required, maxTitleLenght(45))}
                 >
                   {({ input, meta }) => {
-                    console.log('meta: ', meta.error);
                     return (
                       <Input
                         label="Title"
@@ -98,7 +96,7 @@ export const TodoForm: React.FunctionComponent<TodoFormProps> = ({
                   intent="primary"
                   type="button"
                   text="Save"
-                  onClick={() => {}}
+                  onClick={handleSubmit}
                 />
                 <Button
                   intent="none"

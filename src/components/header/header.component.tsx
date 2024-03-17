@@ -1,11 +1,10 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
 import { Button } from '@blueprintjs/core';
 
-// // import { useDispatch, useSelector } from 'react-redux';
-// import { AppDispatch } from '../../redux/store';
-// import { RootState } from '../../types';
-// import * as actions from '../../redux/modal/modal-actions';
-
+import { AppDispatch } from '../../redux/store';
+import { CreateTodoPayload } from '../../types';
+import * as todoOperations from '../../redux/todo/todo.operations';
 import { actionsWrapper, header, logo } from './header.styles';
 import { Select } from '../select';
 import { TodoForm } from '../todo-form';
@@ -13,7 +12,7 @@ import { TodoForm } from '../todo-form';
 export const Header = () => {
   const [isFormOpen, setIsFormOpen] = React.useState(false);
 
-  // const dispatch: AppDispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   // const isModalOpen = useSelector<RootState, boolean>(
   //   (state: RootState) => state.modal
@@ -27,6 +26,11 @@ export const Header = () => {
     setIsFormOpen(false);
   };
 
+  const onSubmit = (values: CreateTodoPayload) => {
+    dispatch(todoOperations.addTodo(values));
+    onCloseForm();
+  };
+
   return (
     <>
       <header className={header}>
@@ -36,7 +40,11 @@ export const Header = () => {
           <Button text="Add Todo" onClick={onAddTodo} />
         </div>
       </header>
-      <TodoForm isFormOpen={isFormOpen} onCloseForm={onCloseForm} />
+      <TodoForm
+        onSubmit={onSubmit}
+        isFormOpen={isFormOpen}
+        onCloseForm={onCloseForm}
+      />
     </>
   );
 };
