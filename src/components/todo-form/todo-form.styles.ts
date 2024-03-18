@@ -1,6 +1,5 @@
 import { css } from '@emotion/css';
 import { FONT_FAMILIES } from '../../themes';
-// import { COLORS } from '../../themes';
 
 export const list = css`
   display: grid;

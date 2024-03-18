@@ -71,7 +71,7 @@ export class HttpService {
         },
       })
       .then((result) => {
-        // this.checkResponseStatus(result);
+        this.checkResponseStatus(result);
         return result.data;
       });
   }
@@ -86,7 +86,7 @@ export class HttpService {
         },
       })
       .then((result) => {
-        // this.checkResponseStatus(result);
+        this.checkResponseStatus(result);
         return result.data;
       });
   }

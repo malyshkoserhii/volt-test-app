@@ -1,10 +1,6 @@
 import { css } from '@emotion/css';
 import { COLORS, FONT_FAMILIES } from '../../themes';
 
-export const section = css`
-  // margin-bottom: 20px;
-`;
-
 export const labelStyles = css`
   margin-bottom: 6px;
   font-family: ${FONT_FAMILIES.robotoMedium};
