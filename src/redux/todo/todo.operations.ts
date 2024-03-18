@@ -1,8 +1,10 @@
 import { AxiosError } from 'axios';
+
 import { todoService } from '../../services/todo.service';
-import { AppDispatch } from '../store';
+import { AppDispatch } from '../../types/state.type';
 import * as actions from './todo-actions';
 import { CreateTodoPayload, UpdateTodoPayload } from '../../types';
+import { TodoLabels } from '../../types/common.type';
 
 export const fetchTodos =
   (status: string, page: number) => async (dispatch: AppDispatch) => {
@@ -18,8 +20,6 @@ export const fetchTodos =
           totalResults: result?.totalResults,
         })
       );
-      //?
-      dispatch(actions.fetchTodosError(''));
     } catch (error) {
       if (error instanceof AxiosError) {
         dispatch(actions.fetchTodosError(error?.response?.data?.message));
@@ -44,33 +44,24 @@ export const addTodo =
   };
 
 export const updateTodo =
-  (payload: UpdateTodoPayload) => async (dispatch: AppDispatch) => {
+  (payload: UpdateTodoPayload, status: string, page: number) =>
+  async (dispatch: AppDispatch) => {
     try {
       dispatch(actions.updateTodoRequest());
 
       const updatedTodo = await todoService.updateTodo(payload);
 
       dispatch(actions.updateTodoSuccess(updatedTodo?.data));
+      dispatch(actions.updateTodoStatusSuccess(updatedTodo?.data));
+
       fetchTodoCount()(dispatch);
+
+      if (status !== TodoLabels.all) {
+        fetchTodos(status, page)(dispatch);
+      }
     } catch (error) {
       if (error instanceof AxiosError) {
         dispatch(actions.updateTodoError(error?.response?.data?.message));
-      }
-    }
-  };
-
-export const updateTodoStatus =
-  (payload: UpdateTodoPayload) => async (dispatch: AppDispatch) => {
-    try {
-      dispatch(actions.updateTodoStatusRequest());
-
-      const updatedTodo = await todoService.updateTodo(payload);
-
-      dispatch(actions.updateTodoStatusSuccess(updatedTodo?.data));
-      fetchTodoCount()(dispatch);
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        dispatch(actions.updateTodoStatusError(error?.response?.data?.message));
       }
     }
   };
@@ -92,16 +83,11 @@ export const deleteTodo =
   };
 
 export const fetchTodoCount = () => async (dispatch: AppDispatch) => {
-  // dispatch(actions.fetchTodosRequest());
-
   try {
     const result = await todoService.getTodoCount();
 
     dispatch(actions.countTodoSuccess(result));
-    //?
-    // dispatch(actions.countTodoError(''));
   } catch (error) {
-    console.log('HERE');
     if (error instanceof AxiosError) {
       dispatch(actions.countTodoError(error?.response?.data?.message));
     }

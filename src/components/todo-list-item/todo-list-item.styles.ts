@@ -3,7 +3,8 @@ import { COLORS, FONT_FAMILIES } from '../../themes';
 
 export const item = css`
   display: grid;
-  grid-template-columns: 1fr 100px;
+  grid-template-columns: 1fr 1fr 100px;
+  column-gap: 10px;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -14,7 +15,8 @@ export const item = css`
   border-radius: 6px;
 
   @media (min-width: 420px) {
-    grid-template-columns: 1fr 200px;
+    grid-template-columns: 200px 1fr 200px;
+    column-gap: 10px;
   }
 `;
 
@@ -28,15 +30,21 @@ export const title = css`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+`;
 
-  @media (min-width: 640px) {
-    overflow: unset;
-  }
+export const description = css`
+  margin: 0;
+  display: block;
+  font-family: ${FONT_FAMILIES.robotoMedium};
+  font-size: 16px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 export const compeltedTodo = css`
   text-decoration: line-through;
-  font-family: ${FONT_FAMILIES.roboto};
+  font-family: ${FONT_FAMILIES.roboto} !important;
 `;
 
 export const buttonsWrapper = css`

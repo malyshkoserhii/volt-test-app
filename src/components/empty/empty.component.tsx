@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { container, paragraph } from './empty.styles';
+import { TodoLabels } from '../../types/common.type';
 
 type EmptyProps = {
   status: string;
@@ -8,7 +9,7 @@ type EmptyProps = {
 
 export const Empty: React.FunctionComponent<EmptyProps> = ({ status }) => {
   const text = React.useMemo(() => {
-    return status === 'all'
+    return status === TodoLabels.all
       ? 'There are any tasks'
       : `There are any  ${status} tasks`;
   }, [status]);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { TodoListItem } from '../todo-list-item';
 import { list } from './todo-list.styles';
+import { TodoListItem } from '../todo-list-item';
 import { Todo } from '../../types';
 
 type TodoListProps = {
@@ -18,20 +18,18 @@ export const TodoList: React.FunctionComponent<TodoListProps> = ({
   onEdit,
 }) => {
   return (
-    <>
-      <ul className={list}>
-        {todos?.map((todo) => {
-          return (
-            <TodoListItem
-              key={todo?.id}
-              todo={todo}
-              onTodoItem={onTodoItem}
-              onDelete={onDelete}
-              onEdit={onEdit}
-            />
-          );
-        })}
-      </ul>
-    </>
+    <ul className={list}>
+      {todos?.map((todo) => {
+        return (
+          <TodoListItem
+            key={todo?.id}
+            todo={todo}
+            onTodoItem={onTodoItem}
+            onDelete={onDelete}
+            onEdit={onEdit}
+          />
+        );
+      })}
+    </ul>
   );
 };

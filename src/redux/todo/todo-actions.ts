@@ -1,14 +1,15 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { Option } from '../../components/select';
 import {
   CreateTodoPayload,
   PaginationData,
   Todo,
   TodoCount,
 } from '../../types';
+import { SelectorOptions } from '../../types/common.type';
 
-export const setTodoStatus = createAction<Option>('todo/setTodoStatus');
+export const setTodoStatus =
+  createAction<SelectorOptions>('todo/setTodoStatus');
 
 export const setTodo = createAction<Todo>('todo/setTodo');
 
@@ -21,6 +22,8 @@ export const fetchTodosSuccess = createAction<Array<Todo>>(
   'todos/fetchTodosSuccess'
 );
 export const fetchTodosError = createAction<string>('todos/fetchTodosError');
+
+export const updateTodoList = createAction<Todo>('todos/updateTodoList');
 
 export const addTodoRequest = createAction('todos/addTodoRequest');
 export const addTodoSuccess = createAction('todos/addTodoSuccess');

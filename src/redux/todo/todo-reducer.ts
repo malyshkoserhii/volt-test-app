@@ -7,8 +7,6 @@ import {
   deleteTodoError,
   deleteTodoRequest,
   deleteTodoSuccess,
-  updateTodoError,
-  updateTodoRequest,
   updateTodoSuccess,
   fetchTodosError,
   fetchTodosRequest,
@@ -21,6 +19,7 @@ import {
   updateTodoStatusSuccess,
   countTodoError,
   countTodoRequest,
+  updateTodoList,
 } from './todo-actions';
 import { Todo } from '../../types';
 
@@ -35,6 +34,9 @@ const todos = createReducer([] as Array<Todo>, (builder) => {
   );
   builder.addCase(updateTodoStatusSuccess, (state, { payload }) =>
     state?.map((todo) => (todo?.id === payload?.id ? payload : todo))
+  );
+  builder.addCase(updateTodoList, (state, { payload }) =>
+    state?.filter((todo) => todo?.id !== payload?.id)
   );
 });
 
@@ -68,9 +70,6 @@ const loading = createReducer(false, (builder) => {
   builder.addCase(addTodoRequest, () => true);
   builder.addCase(addTodoSuccess, () => false);
   builder.addCase(addTodoError, () => false);
-  builder.addCase(updateTodoRequest, () => true);
-  builder.addCase(updateTodoSuccess, () => false);
-  builder.addCase(updateTodoError, () => false);
   builder.addCase(deleteTodoRequest, () => true);
   builder.addCase(deleteTodoSuccess, () => false);
   builder.addCase(deleteTodoError, () => false);
