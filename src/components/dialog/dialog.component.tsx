@@ -11,6 +11,7 @@ import { dialog } from './dialog.styles';
 export type DialogProps = {
   text: string;
   isOpen: boolean;
+  loading?: boolean;
   onClose: () => void;
   onApprove: () => void;
 };
@@ -18,6 +19,7 @@ export type DialogProps = {
 export const Dialog: React.FunctionComponent<DialogProps> = ({
   text,
   isOpen,
+  loading = false,
   onClose,
   onApprove,
 }) => {
@@ -35,7 +37,12 @@ export const Dialog: React.FunctionComponent<DialogProps> = ({
       <DialogFooter
         actions={
           <>
-            <Button intent="danger" text="Yes" onClick={onApprove} />
+            <Button
+              intent="danger"
+              text="Yes"
+              onClick={onApprove}
+              loading={loading}
+            />
             <Button text="No" onClick={onClose} />
           </>
         }

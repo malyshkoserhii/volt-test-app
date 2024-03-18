@@ -18,6 +18,6 @@ export const maxTitleLenght = (max: number) => {
   return (value: string): string | undefined => {
     return value.length <= max
       ? undefined
-      : 'It should contain maximum 45 symbols';
+      : 'Title should contain maximum 45 symbols';
   };
 };

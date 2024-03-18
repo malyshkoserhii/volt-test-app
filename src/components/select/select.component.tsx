@@ -5,30 +5,12 @@ import { ItemRenderer, Select as BlueprintSelect } from '@blueprintjs/select';
 import { selectBtn } from './select.styles';
 import * as actions from '../../redux/todo/todo-actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../../redux/store';
+import { AppDispatch } from '../../types/state.type';
 import { RootState } from '../../types';
+import { SelectorOptions } from '../../types/common.type';
+import { TODO_STATUS } from '../../constants';
 
-export type Option = {
-  label: string;
-  option: string;
-};
-
-const TODO_STATUS: Array<Option> = [
-  {
-    label: 'all',
-    option: 'All',
-  },
-  {
-    label: 'current',
-    option: 'Current',
-  },
-  {
-    label: 'completed',
-    option: 'Completed',
-  },
-];
-
-const renderStatus: ItemRenderer<Option> = (
+const renderStatus: ItemRenderer<SelectorOptions> = (
   status,
   { handleClick, handleFocus, modifiers }
 ) => {
@@ -51,16 +33,16 @@ const renderStatus: ItemRenderer<Option> = (
 export const Select: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
 
-  const todoStatus = useSelector<RootState, Option>(
+  const todoStatus = useSelector<RootState, SelectorOptions>(
     (state: RootState) => state.todosData.todoStatus
   );
 
-  const onItemClick = (item: Option) => {
+  const onItemClick = (item: SelectorOptions) => {
     dispatch(actions.setTodoStatus(item));
   };
 
   return (
-    <BlueprintSelect<Option>
+    <BlueprintSelect<SelectorOptions>
       items={TODO_STATUS}
       itemRenderer={renderStatus}
       filterable={false}

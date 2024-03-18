@@ -48,7 +48,7 @@ export const TodoForm: React.FunctionComponent<TodoFormProps> = ({
           completed: todo?.completed ?? false,
         }}
       >
-        {({ handleSubmit }) => (
+        {({ handleSubmit, submitting }) => (
           <div className={wrapper}>
             <form onSubmit={handleSubmit} className={form}>
               <div className={inputWrapper}>
@@ -106,6 +106,7 @@ export const TodoForm: React.FunctionComponent<TodoFormProps> = ({
                   type="button"
                   text="Save"
                   onClick={handleSubmit}
+                  loading={submitting}
                 />
                 <Button
                   intent="none"

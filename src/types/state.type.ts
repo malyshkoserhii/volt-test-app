@@ -1,21 +1,15 @@
 import { PaginationData, Todo, TodoCount } from '.';
-import { Option } from '../components/select';
+import { store } from '../redux/store';
+import { SelectorOptions } from './common.type';
 
-export type ModalState = {
-  openModal: () => void;
-  closeModal: () => void;
-  modal: {
-    modal: boolean;
-  };
-};
+export type AppDispatch = typeof store.dispatch;
 
 export interface RootState {
-  modal: boolean;
   todosData: {
     todo: Todo;
     todos: Array<Todo>;
     todoCount: TodoCount;
-    todoStatus: Option;
+    todoStatus: SelectorOptions;
     paginationData: PaginationData;
     page: number;
     loading: boolean;

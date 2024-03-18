@@ -1,8 +1,7 @@
 import { css } from '@emotion/css';
 
 export const container = css`
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: space-between;
@@ -11,8 +10,5 @@ export const container = css`
 
 export const childrenWrapper = css`
   padding: 20px;
-  min-height: min-content;
-  height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  flex-grow: 1;
 `;

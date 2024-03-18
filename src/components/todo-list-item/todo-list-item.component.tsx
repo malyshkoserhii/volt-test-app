@@ -6,6 +6,7 @@ import {
   button,
   buttonsWrapper,
   compeltedTodo,
+  description,
   item,
   title,
 } from './todo-list-item.styles';
@@ -47,6 +48,13 @@ export const TodoListItem: React.FunctionComponent<TodoListItemProps> = ({
         >
           {todo?.title}
         </h3>
+        <p
+          className={classNames(description, {
+            [compeltedTodo]: todo?.completed,
+          })}
+        >
+          {todo?.description}
+        </p>
         <div className={buttonsWrapper}>
           <Button intent="warning" className={button} onClick={onDeleteClick}>
             Delete
