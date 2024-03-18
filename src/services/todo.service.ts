@@ -1,3 +1,4 @@
+import { PER_PAGE } from '../constants';
 import {
   CreateTodoPayload,
   GetAllTodosPayload,
@@ -16,9 +17,11 @@ export class TodoService {
 
   public async getAllTodos({
     status,
-    take,
-    skip,
+    page,
   }: GetAllTodosPayload): Promise<PaginatedResponse<Array<Todo>>> {
+    const skip = page * PER_PAGE;
+    const take = PER_PAGE;
+
     const response = await this.httpService.get<PaginatedResponse<Array<Todo>>>(
       `todo/${status}/?take=${take}&skip=${skip}`
     );

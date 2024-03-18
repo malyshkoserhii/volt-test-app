@@ -1,4 +1,4 @@
-import { Todo, TodoCount } from '.';
+import { PaginationData, Todo, TodoCount } from '.';
 import { Option } from '../components/select';
 
 export type ModalState = {
@@ -16,5 +16,8 @@ export interface RootState {
     todos: Array<Todo>;
     todoCount: TodoCount;
     todoStatus: Option;
+    paginationData: PaginationData;
+    page: number;
+    loading: boolean;
   };
 }
