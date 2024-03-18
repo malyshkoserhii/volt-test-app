@@ -15,9 +15,12 @@ import {
   fetchTodosSuccess,
   setTodo,
   setTodoStatus,
-  countTodoRequest,
   countTodoSuccess,
+  setPage,
+  setPaginationData,
+  updateTodoStatusSuccess,
   countTodoError,
+  countTodoRequest,
 } from './todo-actions';
 import { Todo } from '../../types';
 
@@ -28,6 +31,9 @@ const todoStatus = createReducer({ label: 'all', option: 'All' }, (builder) => {
 const todos = createReducer([] as Array<Todo>, (builder) => {
   builder.addCase(fetchTodosSuccess, (_, { payload }) => payload);
   builder.addCase(updateTodoSuccess, (state, { payload }) =>
+    state?.map((todo) => (todo?.id === payload?.id ? payload : todo))
+  );
+  builder.addCase(updateTodoStatusSuccess, (state, { payload }) =>
     state?.map((todo) => (todo?.id === payload?.id ? payload : todo))
   );
 });
@@ -43,6 +49,17 @@ const todoCount = createReducer({ completed: 0, current: 0 }, (builder) => {
 const todosError = createReducer('', (builder) => {
   builder.addCase(fetchTodosError, (_, { payload }) => payload);
 });
+
+const page = createReducer(0, (builder) => {
+  builder.addCase(setPage, (_, { payload }) => payload);
+});
+
+const paginationData = createReducer(
+  { totalPages: 0, totalResults: 0 },
+  (builder) => {
+    builder.addCase(setPaginationData, (_, { payload }) => payload);
+  }
+);
 
 const loading = createReducer(false, (builder) => {
   builder.addCase(fetchTodosRequest, () => true);
@@ -68,5 +85,7 @@ export const todoReducer = combineReducers({
   todoCount,
   todoStatus,
   todosError,
+  page,
+  paginationData,
   loading,
 });

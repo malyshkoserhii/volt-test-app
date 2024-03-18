@@ -198,11 +198,15 @@ export type UpdateTodoPayload = {
 
 export type GetAllTodosPayload = {
   status: string;
-  take: number;
-  skip: number;
+  page: number;
 };
 
 export type TodoCount = {
   current: number;
   completed: number;
+};
+
+export type PaginationData = {
+  totalPages: number;
+  totalResults: number;
 };

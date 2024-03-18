@@ -10,6 +10,9 @@ export const container = css`
 `;
 
 export const childrenWrapper = css`
-  flex-grow: 1;
   padding: 20px;
+  min-height: min-content;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;

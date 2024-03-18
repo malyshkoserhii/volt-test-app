@@ -1,16 +1,19 @@
 import { createAction } from '@reduxjs/toolkit';
 
 import { Option } from '../../components/select';
-import { CreateTodoPayload, Todo, TodoCount } from '../../types';
+import {
+  CreateTodoPayload,
+  PaginationData,
+  Todo,
+  TodoCount,
+} from '../../types';
 
 export const setTodoStatus = createAction<Option>('todo/setTodoStatus');
 
 export const setTodo = createAction<Todo>('todo/setTodo');
 
 export const addTodo = createAction<CreateTodoPayload>('todo/addTodo');
-export const updateTodoStatus = createAction<CreateTodoPayload>(
-  'todo/updateTodoStatus'
-);
+export const updateTodoStatus = createAction<Todo>('todo/updateTodoStatus');
 export const deleteStatus = createAction<string>('todo/deleteStatus');
 
 export const fetchTodosRequest = createAction('todos/fetchTodosRequest');
@@ -33,8 +36,24 @@ export const updateTodoRequest = createAction('todos/updateTodoRequest');
 export const updateTodoSuccess = createAction<Todo>('todos/updateTodoSuccess');
 export const updateTodoError = createAction('todos/editTodosError');
 
+export const updateTodoStatusRequest = createAction(
+  'todos/updateTodoStatusRequest'
+);
+export const updateTodoStatusSuccess = createAction<Todo>(
+  'todos/updateTodoStatusSuccess'
+);
+export const updateTodoStatusError = createAction(
+  'todos/updateTodoStatusError'
+);
+
 export const countTodoRequest = createAction('todos/countTodoRequest');
 export const countTodoSuccess = createAction<TodoCount>(
   'todos/countTodoSuccess'
 );
 export const countTodoError = createAction<string>('todos/countTodoError');
+
+export const setPage = createAction<number>('todos/setPage');
+
+export const setPaginationData = createAction<PaginationData>(
+  'todos/setPaginationData'
+);

@@ -7,9 +7,17 @@ import { TodoForm } from '../../components/todo-form';
 import { TodoList } from '../../components/todo-list';
 import { Dialog } from '../../components/dialog';
 import { AppDispatch } from '../../redux/store';
-import { CreateTodoPayload, RootState, Todo, TodoCount } from '../../types';
+import {
+  CreateTodoPayload,
+  PaginationData,
+  RootState,
+  Todo,
+  TodoCount,
+} from '../../types';
 import { Counter } from '../../components/counter';
 import { Empty } from '../../components/empty';
+import { Pagination } from '../../components/pagination';
+import { Loader } from '../../components/loader';
 
 export const TodoView = () => {
   const [isFormOpen, setIsFormOpen] = React.useState(false);
@@ -27,14 +35,24 @@ export const TodoView = () => {
 
   const todo = useSelector<RootState, Todo>((state) => state.todosData.todo);
 
+  const page = useSelector<RootState, number>((state) => state.todosData.page);
+
+  const paginationData = useSelector<RootState, PaginationData>(
+    (state) => state.todosData.paginationData
+  );
+
   const todoStatus = useSelector<RootState, string>(
     (state) => state.todosData?.todoStatus?.label
   );
 
+  const loading = useSelector<RootState, boolean>(
+    (state) => state.todosData?.loading
+  );
+
   React.useEffect(() => {
-    dispatch(todoOperations.fetchTodos(todoStatus));
+    dispatch(todoOperations.fetchTodos(todoStatus, page));
     dispatch(todoOperations.fetchTodoCount());
-  }, [dispatch, todoStatus]);
+  }, [dispatch, todoStatus, page]);
 
   const onCloseForm = () => {
     setIsFormOpen(false);
@@ -55,7 +73,7 @@ export const TodoView = () => {
   };
 
   const onApprove = () => {
-    dispatch(todoOperations.deleteTodo(todo.id, todoStatus));
+    dispatch(todoOperations.deleteTodo(todo.id, todoStatus, page));
     onCloseDialog();
   };
 
@@ -71,14 +89,21 @@ export const TodoView = () => {
 
   const onTodoItem = (todo: Todo) => {
     dispatch(
-      todoOperations.updateTodo({
+      todoOperations.updateTodoStatus({
         ...todo,
         completed: !todo?.completed,
       })
     );
+    dispatch(todoActions.setTodo(todo));
   };
 
-  return (
+  const onPageChange = (selectedItem: { selected: number }) => {
+    dispatch(todoActions.setPage(selectedItem?.selected));
+  };
+
+  return loading ? (
+    <Loader />
+  ) : (
     <>
       <Counter compeled={counter?.completed} current={counter?.current} />
       {todos?.length === 0 ? (
@@ -91,6 +116,12 @@ export const TodoView = () => {
           onDelete={onDelete}
         />
       )}
+      <Pagination
+        totalPages={paginationData?.totalPages}
+        onPageChange={onPageChange}
+        forcePage={page}
+      />
+
       <TodoForm
         todo={todo}
         onSubmit={onSubmit}

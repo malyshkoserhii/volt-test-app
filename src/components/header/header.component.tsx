@@ -18,6 +18,8 @@ export const Header = () => {
     (state) => state.todosData?.todoStatus?.label
   );
 
+  const page = useSelector<RootState, number>((state) => state.todosData.page);
+
   const onAddTodo = () => {
     setIsFormOpen(true);
   };
@@ -27,7 +29,7 @@ export const Header = () => {
   };
 
   const onSubmit = (values: CreateTodoPayload) => {
-    dispatch(todoOperations.addTodo(values, todoStatus));
+    dispatch(todoOperations.addTodo(values, todoStatus, page));
     onCloseForm();
   };
 

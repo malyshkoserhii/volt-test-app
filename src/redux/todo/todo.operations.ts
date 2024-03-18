@@ -4,30 +4,37 @@ import { AppDispatch } from '../store';
 import * as actions from './todo-actions';
 import { CreateTodoPayload, UpdateTodoPayload } from '../../types';
 
-export const fetchTodos = (status: string) => async (dispatch: AppDispatch) => {
-  dispatch(actions.fetchTodosRequest());
+export const fetchTodos =
+  (status: string, page: number) => async (dispatch: AppDispatch) => {
+    dispatch(actions.fetchTodosRequest());
 
-  try {
-    const result = await todoService.getAllTodos({ status, skip: 0, take: 5 });
+    try {
+      const result = await todoService.getAllTodos({ status, page });
 
-    dispatch(actions.fetchTodosSuccess(result?.data));
-    //?
-    dispatch(actions.fetchTodosError(''));
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      dispatch(actions.fetchTodosError(error?.response?.data?.message));
+      dispatch(actions.fetchTodosSuccess(result?.data));
+      dispatch(
+        actions.setPaginationData({
+          totalPages: result?.totalPages,
+          totalResults: result?.totalResults,
+        })
+      );
+      //?
+      dispatch(actions.fetchTodosError(''));
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        dispatch(actions.fetchTodosError(error?.response?.data?.message));
+      }
     }
-  }
-};
+  };
 
 export const addTodo =
-  (payload: CreateTodoPayload, status: string) =>
+  (payload: CreateTodoPayload, status: string, page: number) =>
   async (dispatch: AppDispatch) => {
     dispatch(actions.addTodoRequest());
 
     try {
       await todoService.addTodo(payload);
-      fetchTodos(status)(dispatch);
+      fetchTodos(status, page)(dispatch);
       fetchTodoCount()(dispatch);
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -52,13 +59,30 @@ export const updateTodo =
     }
   };
 
+export const updateTodoStatus =
+  (payload: UpdateTodoPayload) => async (dispatch: AppDispatch) => {
+    try {
+      dispatch(actions.updateTodoStatusRequest());
+
+      const updatedTodo = await todoService.updateTodo(payload);
+
+      dispatch(actions.updateTodoStatusSuccess(updatedTodo?.data));
+      fetchTodoCount()(dispatch);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        dispatch(actions.updateTodoStatusError(error?.response?.data?.message));
+      }
+    }
+  };
+
 export const deleteTodo =
-  (todoId: string, status: string) => async (dispatch: AppDispatch) => {
+  (todoId: string, status: string, page: number) =>
+  async (dispatch: AppDispatch) => {
     dispatch(actions.deleteTodoRequest());
 
     try {
       await todoService.deleteTodo(todoId);
-      fetchTodos(status)(dispatch);
+      fetchTodos(status, page)(dispatch);
       fetchTodoCount()(dispatch);
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -68,15 +92,16 @@ export const deleteTodo =
   };
 
 export const fetchTodoCount = () => async (dispatch: AppDispatch) => {
-  dispatch(actions.fetchTodosRequest());
+  // dispatch(actions.fetchTodosRequest());
 
   try {
     const result = await todoService.getTodoCount();
 
     dispatch(actions.countTodoSuccess(result));
     //?
-    dispatch(actions.countTodoError(''));
+    // dispatch(actions.countTodoError(''));
   } catch (error) {
+    console.log('HERE');
     if (error instanceof AxiosError) {
       dispatch(actions.countTodoError(error?.response?.data?.message));
     }
