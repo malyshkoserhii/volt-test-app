@@ -60,7 +60,7 @@ export const TodoListItem: React.FunctionComponent<TodoListItemProps> = ({
             Delete
         </Button>
         <Button className={button} onClick={onEditClick}>
-            Edit
+            Details
         </Button>
       </div>
     </li>
