@@ -1,4 +1,4 @@
-import { PER_PAGE } from '../constants';
+import { PER_PAGE } from '../constants'
 import {
   CreateTodoPayload,
   GetAllTodosPayload,
@@ -8,68 +8,68 @@ import {
   Todo,
   TodoCount,
   UpdateTodoPayload,
-} from '../types/http-service.type';
-import { HttpFactoryService } from './http-factory.service';
-import { HttpService } from './http.service';
+} from '../types/http-service.type'
+import { HttpFactoryService } from './http-factory.service'
+import { HttpService } from './http.service'
 
-export class TodoService {
+class TodoService {
   constructor(private httpService: HttpService) {}
 
   public async getAllTodos({
     status,
     page,
   }: GetAllTodosPayload): Promise<PaginatedResponse<Array<Todo>>> {
-    const skip = page * PER_PAGE;
-    const take = PER_PAGE;
+    const skip = page * PER_PAGE
+    const take = PER_PAGE
 
     const response = await this.httpService.get<PaginatedResponse<Array<Todo>>>(
       `todo/${status}/?take=${take}&skip=${skip}`
-    );
+    )
 
-    return response;
+    return response
   }
 
   public async getTodoById(id: string): Promise<Todo> {
-    const response = await this.httpService.get<Todo>(`todo/${id}`);
+    const response = await this.httpService.get<Todo>(`todo/${id}`)
 
-    return response;
+    return response
   }
 
   public async addTodo(payload: CreateTodoPayload): Promise<Todo> {
     const response = await this.httpService.post<Todo, CreateTodoPayload>(
       `todo/create`,
       payload
-    );
+    )
 
-    return response;
+    return response
   }
 
   public async updateTodo(
     payload: UpdateTodoPayload
   ): Promise<ResponseMessageWithData<Todo>> {
     const response = await this.httpService.post<
-      ResponseMessageWithData<Todo>,
-      UpdateTodoPayload
-    >(`todo/update`, payload);
+    ResponseMessageWithData<Todo>,
+    UpdateTodoPayload
+    >(`todo/update`, payload)
 
-    return response;
+    return response
   }
 
   public async getTodoCount(): Promise<TodoCount> {
-    const response = await this.httpService.get<TodoCount>(`todo/count`);
+    const response = await this.httpService.get<TodoCount>(`todo/count`)
 
-    return response;
+    return response
   }
 
   public async deleteTodo(id: string): Promise<ReponseMessage> {
     const response = await this.httpService.delete<ReponseMessage>(
       `todo/${id}`
-    );
+    )
 
-    return response;
+    return response
   }
 }
 
-const factory = new HttpFactoryService();
+const factory = new HttpFactoryService()
 
-export const todoService = new TodoService(factory.createHttpService());
+export const todoService = new TodoService(factory.createHttpService())

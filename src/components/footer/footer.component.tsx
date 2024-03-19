@@ -1,5 +1,7 @@
-import { footer } from './footer.styles';
+import * as React from 'react'
 
-export const Footer = () => {
-  return <footer className={footer}></footer>;
-};
+import { footer } from './footer.styles'
+
+export const Footer = (): React.ReactNode => {
+  return <footer className={footer}></footer>
+}

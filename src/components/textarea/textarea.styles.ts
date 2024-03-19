@@ -1,11 +1,11 @@
-import { css } from '@emotion/css';
-import { COLORS, FONT_FAMILIES } from '../../themes';
+import { css } from '@emotion/css'
+import { COLORS, FONT_FAMILIES } from '../../themes'
 
 export const labelStyles = css`
   margin-bottom: 6px;
   font-family: ${FONT_FAMILIES.robotoMedium};
   font-size: 14px;
-`;
+`
 
 export const textarea = css`
   width: 100%;
@@ -19,4 +19,4 @@ export const textarea = css`
   &:focus {
     outline: 1px solid ${COLORS.cyan} !important;
   }
-`;
+`

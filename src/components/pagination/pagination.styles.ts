@@ -1,12 +1,12 @@
-import { css } from '@emotion/css';
-import { COLORS, FONT_FAMILIES } from '../../themes';
+import { css } from '@emotion/css'
+import { COLORS, FONT_FAMILIES } from '../../themes'
 
 export const paginationWrapper = css`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-`;
+`
 
 export const container = css`
   display: flex;
@@ -56,27 +56,27 @@ export const container = css`
   & li.disabled a {
     cursor: default;
   }
-`;
+`
 
 export const pageClassName = css`
   border-radius: 7px;
   padding: 0.1rem 1rem;
   border: gray 1px solid;
   cursor: pointer;
-`;
+`
 
 export const activeClassName = css`
   background-color: #0366d6;
   border-color: transparent;
   color: white;
   min-width: 32px;
-`;
+`
 
 export const header = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
+`
 
 export const title = css`
   display: flex;
@@ -85,7 +85,7 @@ export const title = css`
   font-family: ${FONT_FAMILIES.robotoMedium};
   font-size: 18px;
   font-weight: normal;
-`;
+`
 
 export const number = css`
   display: flex;
@@ -93,4 +93,4 @@ export const number = css`
   font-family: ${FONT_FAMILIES.roboto};
   font-size: 16px;
   font-weight: normal;
-`;
+`

@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+import { css } from '@emotion/css'
 
 export const loaderWrapper = css`
   width: 100%;
@@ -6,4 +6,4 @@ export const loaderWrapper = css`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+`

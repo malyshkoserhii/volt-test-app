@@ -1,13 +1,15 @@
-import { TodoForm } from '../../components/todo-form';
-import { TodoList } from '../../components/todo-list';
-import { Dialog } from '../../components/dialog';
-import { Counter } from '../../components/counter';
-import { Empty } from '../../components/empty';
-import { Pagination } from '../../components/pagination';
-import { Loader } from '../../components/loader';
-import { useTodo } from '../../hooks';
+import * as React from 'react'
 
-export const TodoView = () => {
+import { TodoForm } from '../../components/todo-form'
+import { TodoList } from '../../components/todo-list'
+import { Dialog } from '../../components/dialog'
+import { Counter } from '../../components/counter'
+import { Empty } from '../../components/empty'
+import { Pagination } from '../../components/pagination'
+import { Loader } from '../../components/loader'
+import { useTodo } from '../../hooks'
+
+export const TodoView = (): React.ReactNode => {
   const {
     isFormOpen,
     isDialogOpen,
@@ -26,23 +28,23 @@ export const TodoView = () => {
     onApprove,
     onTodoItem,
     onPageChange,
-  } = useTodo();
+  } = useTodo()
 
-  return loading ? (
+  return loading ? 
     <Loader />
-  ) : (
+    : 
     <>
       <Counter compeled={counter?.completed} current={counter?.current} />
-      {todos?.length === 0 ? (
+      {todos?.length === 0 ? 
         <Empty status={todoStatus} />
-      ) : (
+        : 
         <TodoList
           todos={todos}
           onTodoItem={onTodoItem}
           onEdit={onEdit}
           onDelete={onDelete}
         />
-      )}
+      }
       <Pagination
         totalPages={paginationData?.totalPages}
         onPageChange={onPageChange}
@@ -63,5 +65,5 @@ export const TodoView = () => {
         loading={loading}
       />
     </>
-  );
-};
+  
+}

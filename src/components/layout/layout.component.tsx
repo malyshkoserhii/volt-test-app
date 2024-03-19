@@ -1,12 +1,12 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { childrenWrapper, container } from './layout.styles';
-import { Header } from '../header';
-import { Footer } from '../footer';
+import { childrenWrapper, container } from './layout.styles'
+import { Header } from '../header'
+import { Footer } from '../footer'
 
 type LayoutProps = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
 export const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
   return (
@@ -15,5 +15,5 @@ export const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
       <div className={childrenWrapper}>{children}</div>
       <Footer />
     </div>
-  );
-};
+  )
+}

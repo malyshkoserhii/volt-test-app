@@ -1,14 +1,14 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { labelStyles, textarea } from './textarea.styles';
+import { labelStyles, textarea } from './textarea.styles'
 
 type TextareaProps = {
-  name: string;
-  label?: string;
-  error?: string;
-  touched?: boolean;
-  input?: React.TextareaHTMLAttributes<HTMLTextAreaElement>;
-};
+  name: string
+  label?: string
+  error?: string
+  touched?: boolean
+  input?: React.TextareaHTMLAttributes<HTMLTextAreaElement>
+}
 
 export const Textarea: React.FunctionComponent<TextareaProps> = ({
   name,
@@ -18,16 +18,16 @@ export const Textarea: React.FunctionComponent<TextareaProps> = ({
   input,
 }) => {
   const isError = React.useMemo(() => {
-    return Boolean(error) && Boolean(touched);
-  }, [error, touched]);
+    return Boolean(error) && Boolean(touched)
+  }, [error, touched])
 
   return (
     <section>
-      {label && (
+      {label && 
         <label htmlFor={name} className={labelStyles}>
           {label}
         </label>
-      )}
+      }
       <textarea
         id={name}
         name={name}
@@ -37,5 +37,5 @@ export const Textarea: React.FunctionComponent<TextareaProps> = ({
       ></textarea>
       {isError && <p>error</p>}
     </section>
-  );
-};
+  )
+}

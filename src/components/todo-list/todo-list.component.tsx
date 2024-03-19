@@ -1,15 +1,15 @@
-import * as React from 'react';
+import * as React from 'react'
 
-import { list } from './todo-list.styles';
-import { TodoListItem } from '../todo-list-item';
-import { Todo } from '../../types';
+import { list } from './todo-list.styles'
+import { TodoListItem } from '../todo-list-item'
+import { Todo } from '../../types'
 
 type TodoListProps = {
-  todos: Array<Todo>;
-  onTodoItem: (todo: Todo) => void;
-  onDelete: (todo: Todo) => void;
-  onEdit: (todo: Todo) => void;
-};
+  todos: Array<Todo>
+  onTodoItem: (todo: Todo) => void
+  onDelete: (todo: Todo) => void
+  onEdit: (todo: Todo) => void
+}
 
 export const TodoList: React.FunctionComponent<TodoListProps> = ({
   todos,
@@ -28,8 +28,8 @@ export const TodoList: React.FunctionComponent<TodoListProps> = ({
             onDelete={onDelete}
             onEdit={onEdit}
           />
-        );
+        )
       })}
     </ul>
-  );
-};
+  )
+}

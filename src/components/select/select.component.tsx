@@ -1,21 +1,21 @@
-import * as React from 'react';
-import { Button, MenuItem } from '@blueprintjs/core';
-import { ItemRenderer, Select as BlueprintSelect } from '@blueprintjs/select';
+import * as React from 'react'
+import { Button, MenuItem } from '@blueprintjs/core'
+import { ItemRenderer, Select as BlueprintSelect } from '@blueprintjs/select'
 
-import { selectBtn } from './select.styles';
-import * as actions from '../../redux/todo/todo-actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../../types/state.type';
-import { RootState } from '../../types';
-import { SelectorOptions } from '../../types/common.type';
-import { TODO_STATUS } from '../../constants';
+import { selectBtn } from './select.styles'
+import * as actions from '../../redux/todo/todo-actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { AppDispatch } from '../../types/state.type'
+import { RootState } from '../../types'
+import { SelectorOptions } from '../../types/common.type'
+import { TODO_STATUS } from '../../constants'
 
 const renderStatus: ItemRenderer<SelectorOptions> = (
   status,
   { handleClick, handleFocus, modifiers }
 ) => {
   if (!modifiers.matchesPredicate) {
-    return null;
+    return null
   }
   return (
     <MenuItem
@@ -27,19 +27,19 @@ const renderStatus: ItemRenderer<SelectorOptions> = (
       roleStructure="none"
       text={status.option}
     />
-  );
-};
+  )
+}
 
-export const Select: React.FC = () => {
-  const dispatch: AppDispatch = useDispatch();
+export const Select: React.FC = (): React.ReactNode => {
+  const dispatch: AppDispatch = useDispatch()
 
   const todoStatus = useSelector<RootState, SelectorOptions>(
     (state: RootState) => state.todosData.todoStatus
-  );
+  )
 
-  const onItemClick = (item: SelectorOptions) => {
-    dispatch(actions.setTodoStatus(item));
-  };
+  const onItemClick = (item: SelectorOptions): void => {
+    dispatch(actions.setTodoStatus(item))
+  }
 
   return (
     <BlueprintSelect<SelectorOptions>
@@ -64,5 +64,5 @@ export const Select: React.FC = () => {
         className={selectBtn}
       />
     </BlueprintSelect>
-  );
-};
+  )
+}

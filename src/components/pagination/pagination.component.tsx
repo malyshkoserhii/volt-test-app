@@ -1,23 +1,23 @@
-import * as React from 'react';
-import ReactPaginate from 'react-paginate';
+import * as React from 'react'
+import ReactPaginate from 'react-paginate'
 
-import { container, paginationWrapper } from './pagination.styles';
-import { usePaginationOptions } from '../../hooks';
+import { container, paginationWrapper } from './pagination.styles'
+import { usePaginationOptions } from '../../hooks'
 
 type PaginationProps = {
-  onPageChange: (selectedItem: { selected: number }) => void;
-  totalPages: number;
-  forcePage: number;
-};
+  onPageChange: (selectedItem: { selected: number }) => void
+  totalPages: number
+  forcePage: number
+}
 
 export const Pagination: React.FunctionComponent<PaginationProps> = ({
   onPageChange,
   totalPages,
   forcePage,
 }) => {
-  const { marginPagesDisplayed } = usePaginationOptions();
+  const { marginPagesDisplayed } = usePaginationOptions()
 
-  return totalPages > 1 ? (
+  return totalPages > 1 ? 
     <div className={paginationWrapper}>
       <ReactPaginate
         className={container}
@@ -32,5 +32,5 @@ export const Pagination: React.FunctionComponent<PaginationProps> = ({
         marginPagesDisplayed={marginPagesDisplayed}
       />
     </div>
-  ) : null;
-};
+    : null
+}

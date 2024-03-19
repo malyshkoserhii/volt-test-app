@@ -1,20 +1,20 @@
-import * as React from 'react';
+import * as React from 'react'
 import {
   Button,
   Dialog as BlueprintDialog,
   DialogBody,
   DialogFooter,
-} from '@blueprintjs/core';
+} from '@blueprintjs/core'
 
-import { dialog } from './dialog.styles';
+import { dialog } from './dialog.styles'
 
 export type DialogProps = {
-  text: string;
-  isOpen: boolean;
-  loading?: boolean;
-  onClose: () => void;
-  onApprove: () => void;
-};
+  text: string
+  isOpen: boolean
+  loading?: boolean
+  onClose: () => void
+  onApprove: () => void
+}
 
 export const Dialog: React.FunctionComponent<DialogProps> = ({
   text,
@@ -48,5 +48,5 @@ export const Dialog: React.FunctionComponent<DialogProps> = ({
         }
       />
     </BlueprintDialog>
-  );
-};
+  )
+}

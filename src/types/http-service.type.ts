@@ -1,10 +1,11 @@
-import { AxiosError } from 'axios';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { AxiosError } from 'axios'
 
-export type IError = AxiosError<{ message: string }>;
+export type IError = AxiosError<{ message: string }>
 
 export type Map = {
-  [key: string]: any;
-};
+  [key: string]: any
+}
 
 export enum HttpStatusCode {
   CONTINUE = 100,
@@ -138,75 +139,75 @@ export enum HttpMethods {
 }
 
 export type HttpConfig = {
-  url?: string;
-  headers?: Record<string, string>;
-  params?: any;
-  data?: any;
-};
+  url?: string
+  headers?: Record<string, string>
+  params?: any
+  data?: any
+}
 
 export type MockHttpConfig = {
-  method: HttpMethods;
-} & HttpConfig;
+  method: HttpMethods
+} & HttpConfig
 
 export type HttpClient = {
-  get<R>(url: string, config?: HttpConfig): Promise<R>;
-  post<R, D>(url: string, data: D, config?: HttpConfig): Promise<R>;
-  put<R, D>(url: string, data: D, config?: HttpConfig): Promise<R>;
-  delete<R>(url: string, config?: HttpConfig): Promise<R>;
-  patch<R, D>(url: string, data: D, config?: HttpConfig): Promise<R>;
-};
+  get<R>(url: string, config?: HttpConfig): Promise<R>
+  post<R, D>(url: string, data: D, config?: HttpConfig): Promise<R>
+  put<R, D>(url: string, data: D, config?: HttpConfig): Promise<R>
+  delete<R>(url: string, config?: HttpConfig): Promise<R>
+  patch<R, D>(url: string, data: D, config?: HttpConfig): Promise<R>
+}
 
 export type Response<T = object[] | undefined> = {
-  status: HttpStatusCode;
-  data: T;
-  message: string;
-};
+  status: HttpStatusCode
+  data: T
+  message: string
+}
 
 export type ReponseMessage = {
-  message: string;
-};
+  message: string
+}
 
 export type ResponseMessageWithData<T> = {
-  data: T;
-  message: string;
-};
+  data: T
+  message: string
+}
 
 export type PaginatedResponse<T> = {
-  data: T;
-  totalPages: number;
-  totalResults: number;
-};
+  data: T
+  totalPages: number
+  totalResults: number
+}
 
 export type Todo = {
-  id: string;
-  title: string;
-  description: string;
-  completed: boolean;
-  created_at: string;
-  updated_at: string;
-};
+  id: string
+  title: string
+  description: string
+  completed: boolean
+  created_at: string
+  updated_at: string
+}
 
 export type CreateTodoPayload = {
-  title: string;
-  description?: string;
-  completed?: boolean;
-};
+  title: string
+  description?: string
+  completed?: boolean
+}
 
 export type UpdateTodoPayload = {
-  id: string;
-} & CreateTodoPayload;
+  id: string
+} & CreateTodoPayload
 
 export type GetAllTodosPayload = {
-  status: string;
-  page: number;
-};
+  status: string
+  page: number
+}
 
 export type TodoCount = {
-  current: number;
-  completed: number;
-};
+  current: number
+  completed: number
+}
 
 export type PaginationData = {
-  totalPages: number;
-  totalResults: number;
-};
+  totalPages: number
+  totalResults: number
+}
