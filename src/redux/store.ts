@@ -1,5 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit';
-import logger from 'redux-logger';
+import { configureStore } from '@reduxjs/toolkit'
+import logger from 'redux-logger'
 import {
   persistStore,
   FLUSH,
@@ -8,9 +8,9 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist';
+} from 'redux-persist'
 
-import { todoReducer } from './todo/todo-reducer';
+import { todoReducer } from './todo/todo-reducer'
 
 export const store = configureStore({
   reducer: {
@@ -19,17 +19,17 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => {
     return process.env.NODE_ENV === 'development'
       ? getDefaultMiddleware({
-          serializableCheck: {
-            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-          },
-        }).concat(logger)
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }).concat(logger)
       : getDefaultMiddleware({
-          serializableCheck: {
-            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-          },
-        });
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      })
   },
   devTools: process.env.NODE_ENV === 'development',
-});
+})
 
-export const persistor = persistStore(store);
+export const persistor = persistStore(store)

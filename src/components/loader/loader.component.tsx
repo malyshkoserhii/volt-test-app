@@ -1,9 +1,10 @@
-import { Bars } from 'react-loader-spinner';
-import { COLORS } from '../../themes';
+import * as React from 'react'
 
-import { loaderWrapper } from './loader.styles';
+import { loaderWrapper } from './loader.styles'
+import { Bars } from 'react-loader-spinner'
+import { COLORS } from '../../themes'
 
-export const Loader = () => {
+export const Loader = ():React.ReactNode => {
   return (
     <Bars
       height="50"
@@ -13,5 +14,5 @@ export const Loader = () => {
       wrapperClass={loaderWrapper}
       visible={true}
     />
-  );
-};
+  )
+}

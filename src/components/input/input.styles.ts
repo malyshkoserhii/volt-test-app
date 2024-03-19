@@ -1,11 +1,11 @@
-import { css } from '@emotion/css';
-import { COLORS, FONT_FAMILIES } from '../../themes';
+import { css } from '@emotion/css'
+import { COLORS, FONT_FAMILIES } from '../../themes'
 
 export const labelStyles = css`
   font-family: ${FONT_FAMILIES.robotoMedium};
   font-size: 14px;
   margin-bottom: 6px;
-`;
+`
 
 export const inputStyles = css`
   width: 100%;
@@ -20,7 +20,7 @@ export const inputStyles = css`
   &:focus {
     outline: 1px solid ${COLORS.cyan} !important;
   }
-`;
+`
 
 export const errorStyles = css`
   font-family: ${FONT_FAMILIES.roboto};
@@ -28,10 +28,10 @@ export const errorStyles = css`
   line-heigh: 10px;
   color: ${COLORS.internationalOrange};
   margin-top: 4px;
-`;
+`
 
 export const dummy = css`
   display: block;
   height: 13px;
   margin-top: 4px;
-`;
+`

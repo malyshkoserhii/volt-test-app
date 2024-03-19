@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+import { css } from '@emotion/css'
 
 export const list = css`
   display: grid;
@@ -6,4 +6,4 @@ export const list = css`
   grid-template-rows: repeat(10, 50px);
   row-gap: 10px;
   margin-bottom: 10px;
-`;
+`

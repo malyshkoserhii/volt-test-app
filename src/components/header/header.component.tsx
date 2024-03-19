@@ -1,12 +1,13 @@
-import { Button } from '@blueprintjs/core';
+import * as React from 'react'
+import { Button } from '@blueprintjs/core'
 
-import { actionsWrapper, header, logo } from './header.styles';
-import { Select } from '../select';
-import { TodoForm } from '../todo-form';
-import { useAddTodo } from '../../hooks';
+import { actionsWrapper, header, logo } from './header.styles'
+import { Select } from '../select'
+import { TodoForm } from '../todo-form'
+import { useAddTodo } from '../../hooks'
 
-export const Header = () => {
-  const { isFormOpen, onAddTodo, onSubmit, onCloseForm } = useAddTodo();
+export const Header = (): React.ReactNode=> {
+  const { isFormOpen, onAddTodo, onSubmit, onCloseForm } = useAddTodo()
 
   return (
     <>
@@ -23,5 +24,5 @@ export const Header = () => {
         onCloseForm={onCloseForm}
       />
     </>
-  );
-};
+  )
+}

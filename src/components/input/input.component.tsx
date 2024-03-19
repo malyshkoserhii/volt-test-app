@@ -1,19 +1,19 @@
-import * as React from 'react';
-import classNames from 'classnames';
+import * as React from 'react'
+import classNames from 'classnames'
 
-import { dummy, errorStyles, inputStyles, labelStyles } from './input.styles';
+import { dummy, errorStyles, inputStyles, labelStyles } from './input.styles'
 
 type InputProps = {
-  name: string;
-  label?: string;
-  error?: string;
-  touched?: boolean;
-  type?: React.HTMLInputTypeAttribute;
-  input?: React.InputHTMLAttributes<HTMLInputElement>;
-  extraInputStyles?: string;
-  extraLabelStyles?: string;
-  extraInputSectionStyles?: string;
-};
+  name: string
+  label?: string
+  error?: string
+  touched?: boolean
+  type?: React.HTMLInputTypeAttribute
+  input?: React.InputHTMLAttributes<HTMLInputElement>
+  extraInputStyles?: string
+  extraLabelStyles?: string
+  extraInputSectionStyles?: string
+}
 
 export const Input: React.FunctionComponent<InputProps> = ({
   name,
@@ -27,19 +27,19 @@ export const Input: React.FunctionComponent<InputProps> = ({
   extraInputStyles,
 }) => {
   const isError = React.useMemo(() => {
-    return Boolean(error) && Boolean(touched);
-  }, [error, touched]);
+    return Boolean(error) && Boolean(touched)
+  }, [error, touched])
 
   return (
     <section className={classNames(extraInputSectionStyles)}>
-      {label && (
+      {label && 
         <label
           htmlFor={name}
           className={classNames(labelStyles, extraLabelStyles)}
         >
           {label}
         </label>
-      )}
+      }
       <input
         id={name}
         name={name}
@@ -47,11 +47,11 @@ export const Input: React.FunctionComponent<InputProps> = ({
         className={classNames(inputStyles, extraInputStyles)}
         {...input}
       />
-      {isError ? (
+      {isError ? 
         <p className={errorStyles}>{error}</p>
-      ) : (
+        : 
         <span className={dummy} />
-      )}
+      }
     </section>
-  );
-};
+  )
+}

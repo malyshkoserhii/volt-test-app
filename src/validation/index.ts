@@ -1,1 +1,1 @@
-export * from './todo.validation';
+export * from './todo.validation'

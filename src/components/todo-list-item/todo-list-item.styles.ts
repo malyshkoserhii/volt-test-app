@@ -1,5 +1,5 @@
-import { css } from '@emotion/css';
-import { COLORS, FONT_FAMILIES } from '../../themes';
+import { css } from '@emotion/css'
+import { COLORS, FONT_FAMILIES } from '../../themes'
 
 export const item = css`
   display: grid;
@@ -18,7 +18,7 @@ export const item = css`
     grid-template-columns: 200px 1fr 200px;
     column-gap: 10px;
   }
-`;
+`
 
 export const title = css`
   display: block;
@@ -30,7 +30,7 @@ export const title = css`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-`;
+`
 
 export const description = css`
   margin: 0;
@@ -40,12 +40,12 @@ export const description = css`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-`;
+`
 
 export const compeltedTodo = css`
   text-decoration: line-through;
   font-family: ${FONT_FAMILIES.roboto} !important;
-`;
+`
 
 export const buttonsWrapper = css`
   display: grid;
@@ -54,7 +54,7 @@ export const buttonsWrapper = css`
   justify-items: center;
   align-items: center;
   width: 100%;
-`;
+`
 
 export const button = css`
   width: 50px;
@@ -64,4 +64,4 @@ export const button = css`
   @media (min-width: 420px) {
     width: 100px !important;
   }
-`;
+`

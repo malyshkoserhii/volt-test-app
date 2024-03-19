@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { container, header, number, title } from './counter.styles';
+import * as React from 'react'
+import { container, header, number, title } from './counter.styles'
 
 type CounterProps = {
-  compeled: number;
-  current: number;
-};
+  compeled: number
+  current: number
+}
 
 export const Counter: React.FunctionComponent<CounterProps> = ({
   compeled,
@@ -21,5 +21,5 @@ export const Counter: React.FunctionComponent<CounterProps> = ({
         <span className={number}>{current}</span>
       </h2>
     </div>
-  );
-};
+  )
+}

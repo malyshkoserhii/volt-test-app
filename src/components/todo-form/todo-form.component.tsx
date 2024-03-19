@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { Button } from '@blueprintjs/core';
-import { Field, Form } from 'react-final-form';
+import * as React from 'react'
+import { Button } from '@blueprintjs/core'
+import { Field, Form } from 'react-final-form'
 
 import {
   btnWrapper,
@@ -10,23 +10,23 @@ import {
   form,
   inputWrapper,
   wrapper,
-} from './todo-form.styles';
-import { Input } from '../input';
-import { Textarea } from '../textarea';
+} from './todo-form.styles'
+import { Input } from '../input'
+import { Textarea } from '../textarea'
 import {
   composeValidators,
   maxTitleLenght,
   required,
-} from '../../validation/todo.validation';
-import { Modal } from '../modal';
-import { CreateTodoPayload, Todo } from '../../types';
+} from '../../validation/todo.validation'
+import { Modal } from '../modal'
+import { CreateTodoPayload, Todo } from '../../types'
 
 type TodoFormProps = {
-  todo?: Todo | undefined;
-  isFormOpen: boolean;
-  onCloseForm: () => void;
-  onSubmit: (values: CreateTodoPayload) => void;
-};
+  todo?: Todo | undefined
+  isFormOpen: boolean
+  onCloseForm: () => void
+  onSubmit: (values: CreateTodoPayload) => void
+}
 
 export const TodoForm: React.FunctionComponent<TodoFormProps> = ({
   todo,
@@ -48,7 +48,7 @@ export const TodoForm: React.FunctionComponent<TodoFormProps> = ({
           completed: todo?.completed ?? false,
         }}
       >
-        {({ handleSubmit, submitting }) => (
+        {({ handleSubmit, submitting }) => 
           <div className={wrapper}>
             <form onSubmit={handleSubmit} className={form}>
               <div className={inputWrapper}>
@@ -65,7 +65,7 @@ export const TodoForm: React.FunctionComponent<TodoFormProps> = ({
                         touched={meta?.touched}
                         input={input}
                       />
-                    );
+                    )
                   }}
                 </Field>
                 <Field name="description">
@@ -78,7 +78,7 @@ export const TodoForm: React.FunctionComponent<TodoFormProps> = ({
                         touched={meta?.touched}
                         input={input}
                       />
-                    );
+                    )
                   }}
                 </Field>
                 <Field name="completed" type="checkbox">
@@ -95,7 +95,7 @@ export const TodoForm: React.FunctionComponent<TodoFormProps> = ({
                         extraLabelStyles={checkboxLabel}
                         extraInputStyles={checkbox}
                       />
-                    );
+                    )
                   }}
                 </Field>
               </div>
@@ -117,8 +117,8 @@ export const TodoForm: React.FunctionComponent<TodoFormProps> = ({
               </div>
             </form>
           </div>
-        )}
+        }
       </Form>
     </Modal>
-  );
-};
+  )
+}

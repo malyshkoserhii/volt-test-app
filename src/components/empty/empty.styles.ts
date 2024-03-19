@@ -1,9 +1,9 @@
-import { css } from '@emotion/css';
-import { COLORS, FONT_FAMILIES } from '../../themes';
+import { css } from '@emotion/css'
+import { COLORS, FONT_FAMILIES } from '../../themes'
 
 export const container = css`
   padding: 10px 0;
-`;
+`
 
 export const paragraph = css`
   display: flex;
@@ -13,4 +13,4 @@ export const paragraph = css`
   color: ${COLORS.dimGrey};
   font-size: 18px;
   text-align: center;
-`;
+`

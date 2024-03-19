@@ -1,6 +1,6 @@
-import { SelectorOptions, TodoLabels, TodoOptions } from '../types/common.type';
+import { SelectorOptions, TodoLabels, TodoOptions } from '../types/common.type'
 
-export const PER_PAGE = 10;
+export const PER_PAGE = 10
 
 export const TODO_STATUS: Array<SelectorOptions> = [
   {
@@ -15,4 +15,4 @@ export const TODO_STATUS: Array<SelectorOptions> = [
     label: TodoLabels.completed,
     option: TodoOptions.Completed,
   },
-];
+]

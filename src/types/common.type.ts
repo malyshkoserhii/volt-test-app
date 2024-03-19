@@ -1,11 +1,11 @@
 export type PaginationSelected = {
-  selected: number;
-};
+  selected: number
+}
 
 export type SelectorOptions = {
-  label: string;
-  option: string;
-};
+  label: string
+  option: string
+}
 
 export enum TodoLabels {
   all = 'all',
@@ -20,13 +20,13 @@ export enum TodoOptions {
 }
 
 export type MarginPagesDisplayed = {
-  smallMobile: number;
-  largeMobile: number;
-  tablet: number;
-  desktop: number;
-};
+  smallMobile: number
+  largeMobile: number
+  tablet: number
+  desktop: number
+}
 
 export type MarginPagesDisplayedRes = {
-  type: keyof MarginPagesDisplayed;
-  result: boolean;
-};
+  type: keyof MarginPagesDisplayed
+  result: boolean
+}

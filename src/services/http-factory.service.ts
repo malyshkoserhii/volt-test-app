@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from 'axios'
 
-import { HttpService } from './http.service';
+import { HttpService } from './http.service'
 
 export class HttpFactoryService {
-	createHttpService() {
-		return new HttpService(axios);
-	}
+  createHttpService(): HttpService {
+    return new HttpService(axios)
+  }
 }
